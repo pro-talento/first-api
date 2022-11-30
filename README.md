@@ -9,3 +9,4 @@
   * https://www.npmjs.com/package/morgan
 
  4. Crear nuestro primer endpoint.
+ 5. Instalar nodemon https://www.npmjs.com/package/nodemon
