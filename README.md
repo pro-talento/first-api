@@ -7,3 +7,5 @@
   * https://www.npmjs.com/package/cors
   * https://www.npmjs.com/package/body-parser
   * https://www.npmjs.com/package/morgan
+
+ 4. Crear nuestro primer endpoint.
