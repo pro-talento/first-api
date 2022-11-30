@@ -1,0 +1,19 @@
+{
+  "name": "first-api",
+  "version": "1.0.0",
+  "description": "Primera API con Express.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pro-talento/first-api.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pro-talento/first-api/issues"
+  },
+  "homepage": "https://github.com/pro-talento/first-api#readme"
+}
