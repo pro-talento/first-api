@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/pro-talento/first-api/issues"
   },
-  "homepage": "https://github.com/pro-talento/first-api#readme"
+  "homepage": "https://github.com/pro-talento/first-api#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
