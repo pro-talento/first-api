@@ -19,6 +19,8 @@ app.get('/', (req, res) => {
   `);
 });
 
+// app.get('/game')
+
 // console.log(path.join(__dirname, '/webpage/index.html'));
 app.get('/landing', (req, res) => {
   res.sendFile(path.join(__dirname, '/webpage/index.html'));
