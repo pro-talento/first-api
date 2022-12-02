@@ -16,6 +16,9 @@ app.get('/', (req, res) => {
   const usersHtml = usuarios.map(u => `<li>${u.name} tiene ${u.age}</li>`).join('');
   res.send(`
     <ul>${usersHtml}</ul>
+    <script>
+      setTimeout(() => {location.reload()}, 3000);
+    </script>
   `);
 });
 
