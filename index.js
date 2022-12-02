@@ -2,6 +2,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
+const path = require('path');
 const app = express();
 
 app.use(cors());
@@ -18,6 +19,11 @@ app.get('/', (req, res) => {
   `);
 });
 
+// console.log(path.join(__dirname, '/webpage/index.html'));
+app.get('/landing', (req, res) => {
+  res.sendFile(path.join(__dirname, '/webpage/index.html'));
+});
+
 app.post('/', (req, res) => {
   console.log(req.body);
   console.log(req.query);
@@ -25,6 +31,7 @@ app.post('/', (req, res) => {
 });
 
 app.post('/registro', (req, res) => {
+  console.log(req.body);
   const { name, age } = req.body;
   usuarios.push({ name, age });
   res.status(200).send('Usuario agregado exitosamente');
