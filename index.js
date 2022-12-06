@@ -23,6 +23,9 @@ app.get('/', (req, res) => {
 });
 
 // app.get('/game')
+app.get('/game', (req, res) => {
+  res.sendFile(path.join(__dirname, '/webpage/game.html'));
+});
 
 // console.log(path.join(__dirname, '/webpage/index.html'));
 app.get('/landing', (req, res) => {
