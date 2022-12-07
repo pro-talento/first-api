@@ -40,6 +40,7 @@
         [null, null, null],
         [null, null, null]
       ];
+      let currentTurn = "X"
 
       const gameTable = document.querySelector('#game');
 
@@ -54,9 +55,15 @@
       }
       
       function gameClick(row, cell) {
-        datos[row][cell] = "X";
+        datos[row][cell] = currentTurn;
         gameTable.innerHTML = renderBoard(datos);
         addEventListeners(datos);
+
+        if (currentTurn === "X") {
+          currentTurn = "O";
+        } else { 
+          currentTurn = "X";
+        }
       }
     
       function addEventListeners(game) {
