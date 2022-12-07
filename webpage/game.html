@@ -17,6 +17,7 @@
       height: 100px;
       text-align: center;
       font-size: 48px;
+      cursor: pointer;
     }
 
     #reset-button {
@@ -35,15 +36,16 @@
 
     <script>
       const datos = [
-        ["X","O","X"],
-        ["O","X", "O"],
-        ["X","O","X"]
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
       ];
 
       const gameTable = document.querySelector('#game');
 
       function renderBoard(game) {
-        const board = datos.map((level, row_i) => {
+        console.log('Se renderiza el board')
+        const board = game.map((level, row_i) => {
           const cells = level.map((cell, cell_i) => `<td id="row-${row_i}-cell-${cell_i}">${cell ? cell : ''}</td>`).join('');
           const row = `<tr id="row-${row_i}">${cells}</tr>`;
           return row
@@ -53,6 +55,21 @@
 
       gameTable.innerHTML = renderBoard(datos);
 
+      function gameClick(row, cell) {
+        datos[row][cell] = "X";
+        gameTable.innerHTML = renderBoard(datos);
+        addEventListeners(datos);
+      }
+
+      function addEventListeners(game) {
+        console.log('Se general los escuchadores')
+        game.forEach((row, row_i) => row.forEach((cell, cell_i) => {
+          const currentCellId = `row-${row_i}-cell-${cell_i}`;
+          document.querySelector(`#${currentCellId}`).addEventListener('click', () => gameClick(row_i, cell_i))
+        }))
+      }
+
+      addEventListeners(datos);
       
       // <tr>
       //   <td id="cell-0"></td>
