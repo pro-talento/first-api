@@ -35,11 +35,14 @@
     <button id="reset-button">Reset Game</button>
 
     <script>
-      const datos = [
+      const INIT_GAME = [
         [null, null, null],
         [null, null, null],
         [null, null, null]
       ];
+
+      let datos = [[...INIT_GAME[0]], [...INIT_GAME[1]], [...INIT_GAME[2]]]
+
       let currentTurn = "X"
 
       const gameTable = document.querySelector('#game');
@@ -67,16 +70,27 @@
       }
     
       function addEventListeners(game) {
-        console.log('Se general los escuchadores')
+        console.log('Se generan los escuchadores')
         game.forEach((row, row_i) => row.forEach((cell, cell_i) => {
           const currentCellId = `row-${row_i}-cell-${cell_i}`;
           document.querySelector(`#${currentCellId}`).addEventListener('click', () => gameClick(row_i, cell_i))
         }))
       }
       
+      function reset(game) {
+        console.log('Reiniciar juego')
+        datos = [[...INIT_GAME[0]], [...INIT_GAME[1]], [...INIT_GAME[2]]];
+        gameTable.innerHTML = renderBoard(datos);
+        addEventListeners(datos);
+      }
+      
       
       gameTable.innerHTML = renderBoard(datos);
       addEventListeners(datos);
+      
+      const btnReset = document.querySelector('#reset-button');
+      btnReset.addEventListener('click', () => reset());
+
       
       // <tr>
       //   <td id="cell-0"></td>
