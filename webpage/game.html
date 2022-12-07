@@ -29,27 +29,53 @@
 
   <body>
     <h1>Triqui</h1>
-    <table>
-      <tr>
-        <td id="cell-0"></td>
-        <td id="cell-1"></td>
-        <td id="cell-2"></td>
-      </tr>
-      <tr>
-        <td id="cell-3"></td>
-        <td id="cell-4"></td>
-        <td id="cell-5"></td>
-      </tr>
-      <tr>
-        <td id="cell-6"></td>
-        <td id="cell-7"></td>
-        <td id="cell-8"></td>
-      </tr>
+    <table id="game">
     </table>
     <button id="reset-button">Reset Game</button>
 
     <script>
+      const datos = [
+        ["X","O","X"],
+        ["O","X", "O"],
+        ["X","O","X"]
+      ];
 
+      const gameTable = document.querySelector('#game');
+
+      function renderBoard(game) {
+        const board = datos.map((level, row_i) => {
+          const cells = level.map((cell, cell_i) => `<td id="row-${row_i}-cell-${cell_i}">${cell ? cell : ''}</td>`).join('');
+          const row = `<tr id="row-${row_i}">${cells}</tr>`;
+          return row
+        }).join('');
+        return board;
+      }
+
+      gameTable.innerHTML = renderBoard(datos);
+
+      
+      // <tr>
+      //   <td id="cell-0"></td>
+      //   <td id="cell-1"></td>
+      //   <td id="cell-2"></td>
+      // </tr>
+      // <tr>
+      //   <td id="cell-3"></td>
+      //   <td id="cell-4"></td>
+      //   <td id="cell-5"></td>
+      // </tr>
+      // <tr>
+      //   <td id="cell-6"></td>
+      //   <td id="cell-7"></td>
+      //   <td id="cell-8"></td>
+      // </tr>
+      // 1. Puede ser una "X" ✅
+      // 2. Puede ser una "O" ✅
+      // 3. Saber la posición ✅
+      // 4. Si la celda esta o no ocupada ✅
+
+      // v2 - Cuando ya sabemos que usuario participa      
+      // 5. Saber el usuario
     </script>
   </body>
 </body>
