@@ -33,6 +33,7 @@
     <table id="game">
     </table>
     <button id="reset-button">Reset Game</button>
+    <h2 id="messageWinner"></h2>
 
     <script>
       const INIT_GAME = [
@@ -57,9 +58,56 @@
         return board;
       }
       
+      function checkStatus(user){
+
+        if(datos[0][0] === user && datos[0][1] === user && datos[0][2] === user){
+          return true;
+        }
+
+        if(datos[1][0] === user && datos[1][1] === user && datos[1][2] === user){
+          return true;
+        }
+
+        if(datos[2][0] === user && datos[2][1] === user && datos[2][2] === user){
+          return true;
+        }
+
+        if(datos[0][0] === user && datos[1][0] === user && datos[2][0] === user){
+          return true;
+        }
+
+        if(datos[0][1] === user && datos[1][1] === user && datos[2][1] === user){
+          return true;
+        }
+
+        if(datos[0][2] === user && datos[1][2] === user && datos[2][2] === user){
+          return true;
+        }
+
+        if(datos[0][0] === user && datos[1][1] === user && datos[2][2] === user){
+          return true;
+        }
+
+        if(datos[0][2] === user && datos[1][1] === user && datos[2][0] === user){
+          return true;
+        }
+
+        return false;
+
+      }
+
+      const messageWinner = document.getElementById('messageWinner');
+      function Winner(user){
+        messageWinner.textContent = `Gano el Usuario ${user}`
+    
+      }
+
       function gameClick(row, cell) {
         datos[row][cell] = currentTurn;
         gameTable.innerHTML = renderBoard(datos);
+        if(checkStatus(currentTurn)){
+          Winner(currentTurn);
+        }
         addEventListeners(datos);
 
         if (currentTurn === "X") {
