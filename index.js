@@ -5,7 +5,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-const controllers = require('./cotrollers');
+const controllers = require('./controllers');
 
 app.use(cors());
 app.use(morgan('dev'));
@@ -42,7 +42,7 @@ app.post('/api', (req, res) => {
 });
 
 app.post('/api/auth/signup', controllers.auth.signup);
-app.login('api/auth/login', controllers.auth.login);
+app.post('/api/auth/login', controllers.auth.login);
 
 app.listen(3000, () => {
   console.log('El servidor esta vivo en el puerto 3000 !!!');

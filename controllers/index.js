@@ -1,5 +1,5 @@
 const auth = require('./auth');
 
-export default {
+module.exports = {
   auth
 }
