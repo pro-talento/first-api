@@ -5,6 +5,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+const controllers = require('./cotrollers');
+
 app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -32,18 +34,15 @@ app.get('/landing', (req, res) => {
   res.sendFile(path.join(__dirname, '/webpage/index.html'));
 });
 
-app.post('/', (req, res) => {
+
+app.post('/api', (req, res) => {
   console.log(req.body);
   console.log(req.query);
-  res.status(202).send('Hola ' + req.body.name + ' de ' + req.body.age);
+  res.status(202).json({ message: 'Hola ' + req.body.name + ' de ' + req.body.age });
 });
 
-app.post('/registro', (req, res) => {
-  console.log(req.body);
-  const { name, age } = req.body;
-  usuarios.push({ name, age });
-  res.status(200).send('Usuario agregado exitosamente');
-});
+app.post('/api/auth/signup', controllers.auth.signup);
+app.login('api/auth/login', controllers.auth.login);
 
 app.listen(3000, () => {
   console.log('El servidor esta vivo en el puerto 3000 !!!');
