@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 const usuarios = [];
 
-// Endpoints
+// Ruta -> Vista (Responde es HTML)
 app.get('/', (req, res) => {
   const usersHtml = usuarios.map(u => `<li>${u.name} tiene ${u.age}</li>`).join('');
   res.send(`
@@ -24,24 +24,27 @@ app.get('/', (req, res) => {
   `);
 });
 
-// app.get('/game')
+// Ruta -> Vista (Responde es HTML)
 app.get('/game', (req, res) => {
   res.sendFile(path.join(__dirname, '/webpage/game.html'));
 });
 
-// console.log(path.join(__dirname, '/webpage/index.html'));
+// Ruta -> Vista (Responde es HTML)
 app.get('/landing', (req, res) => {
   res.sendFile(path.join(__dirname, '/webpage/index.html'));
 });
 
-
+// Ruta -> Endpoint (Responde JSON) -> API
 app.post('/api', (req, res) => {
   console.log(req.body);
   console.log(req.query);
   res.status(202).json({ message: 'Hola ' + req.body.name + ' de ' + req.body.age });
 });
 
+// Ruta -> Endpoint (Responde JSON) -> API
 app.post('/api/auth/signup', controllers.auth.signup);
+
+// Ruta -> Endpoint (Responde JSON) -> API
 app.post('/api/auth/login', controllers.auth.login);
 
 app.listen(3000, () => {
