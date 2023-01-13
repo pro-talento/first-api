@@ -1,61 +1,36 @@
 const fs = require('fs')
-const path = require('path')
+// const path = require('path')
 
 function searchSession(sessionId) {
   const data = fs.readFileSync('database.txt', 'utf-8');
   const parsedData = JSON.parse(data);
-  const session = parsedData[sessionId]
+  const session = parsedData[sessionId];
 
   if (!session) {
-    return null
+    return null;
   }
 
-  return session
-
-  // Algoritmo para buscar la sesión (async)
-  // fs.readFile('database.txt', 'utf-8', (err, data) => {
-  //   if (err) {
-  //     throw err;
-  //   }
-  //   const parsedData = JSON.parse(data);
-  //   const session = parsedData[sessionId]
-
-  //   if (!session) {
-  //     return callback(null)
-  //   }
-
-  //   return callback(session)
-  // });
+  return session;
 }
 
-function guardarDatos(nuevosDatos) {
-  fs.writeFile('database.txt', nuevosDatos, (err) => {
-    if (err) {
-      throw err;
+function saveData(sessionId, newData) {
+  if (typeof newData === 'object') {
+    if (searchSession(sessionId)) {
+      const data = fs.readFileSync('database.txt', 'utf-8');
+      const parsedData = JSON.parse(data);
+      parsedData[sessionId] = newData
+      const stringifiedData = JSON.stringify(parsedData);
+      console.log(stringifiedData)
+      fs.writeFileSync('database.txt', stringifiedData);
+    } else {
+      throw new Error('session not found')
     }
-  
-    console.log('Datos guardados exitosamente ✅');
-  });
-}
-
-// Leer un archivo (El archivo tiene que existir)
-fs.readFile('database.txt','utf-8', (err, data) => {
-  if (err) {
-    throw err;
+  } else {
+    throw new Error('wrong type of newData, should be object');
   }
-  const parsedData = JSON.parse(data)
-
-  parsedData[1] = { nombre: "Misael" }
-  parsedData[2] = { nombre: "David" }
-  parsedData[3] = { nombre: "Angel" }
-
-  const stringifiedJSON = JSON.stringify(parsedData)
-  guardarDatos(stringifiedJSON)
-});
-
-console.log(searchSession(1));
-
+}
 
 module.exports = {
-  searchSession
+  searchSession,
+  saveData
 }
