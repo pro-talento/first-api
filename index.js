@@ -47,6 +47,20 @@ app.post('/api/auth/signup', controllers.auth.signup);
 // Ruta -> Endpoint (Responde JSON) -> API
 app.post('/api/auth/login', controllers.auth.login);
 
+app.get('/api/sessions/:id', (req, res) => {
+  const { id: session_id } = req.params;
+  console.log({ session_id: session_id });
+  //TODO: Obtener sesion de base de datos
+
+  //TODO: Validar si la sesión existe en la base de datos
+  if (false) {
+    return res.status(404).json({ message: 'Session not found' })
+  }
+  return res.status(200).json({ session_id });
+});
+
+//TODO: Generar un endpoint post para actualizar los datos de una sesión (solo sesiones existentes)
+
 app.listen(3000, () => {
   console.log('El servidor esta vivo en el puerto 3000 !!!');
 })
