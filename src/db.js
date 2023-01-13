@@ -30,7 +30,8 @@ fs.readFile('database.txt','utf-8', (err, data) => {
   guardarDatos(stringifiedJSON)
 });
 
-searchSession(1);
+console.log(searchSession(1)); // { nombre: 'Misael' }
+console.log(typeof searchSession(1)); // object
 
 module.exports = {
   searchSession
