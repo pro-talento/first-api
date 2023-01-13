@@ -60,6 +60,7 @@ app.get('/api/sessions/:id', (req, res) => {
 });
 
 //TODO: Generar un endpoint post para actualizar los datos de una sesión (solo sesiones existentes)
+// app.post('/api/session/:id, () => {})
 
 app.listen(3000, () => {
   console.log('El servidor esta vivo en el puerto 3000 !!!');
